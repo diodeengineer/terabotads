@@ -1,4 +1,8 @@
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,27 +30,35 @@
       to { transform: rotate(360deg); }
     }
   </style>
+
+  <!-- ✅ Adsterra Native Banner Script -->
+  <script async="async" data-cfasync="false" src="//pl27182779.profitableratecpm.com/29bfcad8afd4d517147d4c3e8edd2853/invoke.js"></script>
 </head>
 <body>
   <h2>🔄 Loading sponsor page...</h2>
   <div class="spinner"></div>
   <p>Your video will start shortly...</p>
 
+  <!-- ✅ Native Ad container (must be present in DOM) -->
+  <div id="container-29bfcad8afd4d517147d4c3e8edd2853" style="margin-top: 20px;"></div>
+
+  <!-- ✅ Video container -->
+  <div id="video-container" style="margin-top: 30px;"></div>
+
   <script>
     const params = new URLSearchParams(window.location.search);
     const videoUrl = params.get("file");
+    const videoContainer = document.getElementById("video-container");
+
     if (!videoUrl) {
       document.body.innerHTML = "❌ Missing video URL.";
     } else {
-      document.body.innerHTML = `
-        <h2>Loading video...</h2>
-        <!-- 👇 Your Native Banner Ad -->
-        <script async="async" data-cfasync="false" src="//pl27182779.profitableratecpm.com/29bfcad8afd4d517147d4c3e8edd2853/invoke.js"></script>
-        <div id="container-29bfcad8afd4d517147d4c3e8edd2853"></div>
-
-        <!-- 👇 Video element -->
-        <video controls autoplay width="90%" src="${videoUrl}"></video>
-      `
+      const videoEl = document.createElement("video");
+      videoEl.src = videoUrl;
+      videoEl.controls = true;
+      videoEl.autoplay = true;
+      videoEl.width = "90%";
+      videoContainer.appendChild(videoEl);
     }
   </script>
 </body>

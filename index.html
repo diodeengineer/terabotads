@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,25 +26,33 @@
       to { transform: rotate(360deg); }
     }
   </style>
-  <!-- Your Adsterra script here -->
-  <script type="text/javascript" src="//www.profitableratecpm.com/bj0u0apt?key=fb26b39aec83bc2d6d25d04fc1c6c1c0"></script>
 </head>
 <body>
   <h2>🔄 Loading sponsor page...</h2>
   <div class="spinner"></div>
   <p>Your video will start shortly...</p>
 
+  <div id="ad-container"></div>
+
   <script>
     const params = new URLSearchParams(window.location.search);
-    const file = params.get("file");
-
-    if (file) {
-      setTimeout(() => {
-        window.location.href = file;
-      }, 8000); // 8 sec delay
+    const videoUrl = params.get("file");
+    if (!videoUrl) {
+      document.body.innerHTML = "❌ Missing video URL.";
     } else {
-      document.body.innerHTML = "<h3>❌ Missing video URL.</h3>";
+      document.body.innerHTML = `
+        <h2>Loading video...</h2>
+        <video controls autoplay width="90%" src="${videoUrl}"></video>
+        <div id="ad-container"></div>
+      `;
+
+      // Dynamically load Adsterra script
+      const s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.src = '//www.profitableratecpm.com/bj0u0apt?key=fb26b39aec83bc2d6d25d04fc1c6c1c0';
+      document.getElementById('ad-container').appendChild(s);
     }
   </script>
 </body>
 </html>
+

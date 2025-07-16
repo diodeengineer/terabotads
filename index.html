@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +26,9 @@
       to { transform: rotate(360deg); }
     }
   </style>
-  <!-- Adsterra script -->
-  <script type="text/javascript" src="//www.profitableratecpm.com/bj0u0apt?key=fb26b39aec83bc2d6d25d04fc1c6c1c0"></script>
+  
+  <!-- ✅ Your Adsterra Popunder script -->
+  <script type='text/javascript' src='//pl27180736.profitableratecpm.com/90/89/9a/90899a586498776c0fd1016bf67a84af.js'></script>
 </head>
 <body>
   <h2>🔄 Loading sponsor page...</h2>
@@ -36,17 +38,19 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const videoUrl = params.get("file");
-
     if (!videoUrl) {
       document.body.innerHTML = "❌ Missing video URL.";
     } else {
-      console.log("Video URL detected:", videoUrl);
-      // Wait 5 seconds then redirect
+      // Wait a few seconds before showing the video
       setTimeout(() => {
-        window.location.href = videoUrl;
-      }, 5000);
+        document.body.innerHTML = `
+          <h2>Loading video...</h2>
+          <video controls autoplay width="90%" src="${videoUrl}"></video>
+        `;
+      }, 5000); // 5-second delay for ad impression
     }
   </script>
 </body>
 </html>
+
 

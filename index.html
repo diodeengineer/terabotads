@@ -25,8 +25,6 @@
       to { transform: rotate(360deg); }
     }
   </style>
-  <!-- Adsterra script -->
-  <script type="text/javascript" src="//www.profitableratecpm.com/bj0u0apt?key=fb26b39aec83bc2d6d25d04fc1c6c1c0"></script>
 </head>
 <body>
   <h2>🔄 Loading sponsor page...</h2>
@@ -36,17 +34,19 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const videoUrl = params.get("file");
-
     if (!videoUrl) {
       document.body.innerHTML = "❌ Missing video URL.";
     } else {
-      console.log("Video URL detected:", videoUrl);
-      // Wait 5 seconds then redirect
-      setTimeout(() => {
-        window.location.href = videoUrl;
-      }, 5000);
+      document.body.innerHTML = `
+        <h2>Loading video...</h2>
+        <!-- 👇 Your Native Banner Ad -->
+        <script async="async" data-cfasync="false" src="//pl27182779.profitableratecpm.com/29bfcad8afd4d517147d4c3e8edd2853/invoke.js"></script>
+        <div id="container-29bfcad8afd4d517147d4c3e8edd2853"></div>
+
+        <!-- 👇 Video element -->
+        <video controls autoplay width="90%" src="${videoUrl}"></video>
+      `;
     }
   </script>
 </body>
 </html>
-

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,9 +33,23 @@
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
     }
-    .video-link:hover {
-      background-color: #0056b3;
+    .video-link.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 10px;
+    }
+    .countdown {
+      font-size: 1em;
+      color: #555;
+      margin-top: 10px;
     }
   </style>
 
@@ -60,16 +73,43 @@
     if (!videoUrl) {
       videoContainer.innerHTML = "<p style='color:red;'>❌ Missing video URL.</p>";
     } else {
-      videoContainer.innerHTML = `
-        <a href="${videoUrl}" class="video-link" target="_blank">▶️ Click Here to Watch the Video</a>
-        <p style="margin-top:10px;font-size:0.9em;color:#666;">
-          If it doesn't play, long-press and open in your video app.
-        </p>
-      `;
+      // Create link but keep it hidden
+      const link = document.createElement("a");
+      link.href = videoUrl;
+      link.target = "_blank";
+      link.textContent = "▶️ Click Here to Watch the Video";
+      link.className = "video-link";
+      videoContainer.appendChild(link);
+
+      // Countdown element
+      const countdown = document.createElement("p");
+      countdown.className = "countdown";
+      countdown.textContent = "Please wait 5 seconds...";
+      videoContainer.appendChild(countdown);
+
+      // Optional note
+      const note = document.createElement("p");
+      note.className = "note";
+      note.textContent = "If it doesn't play, long-press and open in your video app.";
+      videoContainer.appendChild(note);
+
+      // Start countdown
+      let secondsLeft = 5;
+      const timer = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft > 0) {
+          countdown.textContent = `Please wait ${secondsLeft} seconds...`;
+        } else {
+          clearInterval(timer);
+          countdown.textContent = "✅ You can now watch the video:";
+          link.classList.add("visible");
+        }
+      }, 1000);
     }
   </script>
 </body>
 </html>
+
 
 
 

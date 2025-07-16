@@ -1,33 +1,42 @@
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Loading Video...</title>
+  <title>Watch Your Video</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
       background: #f9f9f9;
       color: #333;
+      text-align: center;
+      padding: 40px 20px;
     }
-    .spinner {
+    h2 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1em;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .ad-container {
       margin: 20px auto;
-      width: 40px;
-      height: 40px;
-      border: 4px solid #ccc;
-      border-top: 4px solid #555;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .video-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 20px;
+      background-color: #007BFF;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .video-link:hover {
+      background-color: #0056b3;
     }
   </style>
 
@@ -35,15 +44,13 @@
   <script async="async" data-cfasync="false" src="//pl27182779.profitableratecpm.com/29bfcad8afd4d517147d4c3e8edd2853/invoke.js"></script>
 </head>
 <body>
-  <h2>🔄 Loading sponsor page...</h2>
-  <div class="spinner"></div>
-  <p>Your video will start shortly...</p>
+  <h2>🎬 Scroll down to watch your video</h2>
+  <p>Thanks for supporting us by viewing the sponsor below.</p>
 
-  <!-- ✅ Native Ad container (must be present in DOM) -->
-  <div id="container-29bfcad8afd4d517147d4c3e8edd2853" style="margin-top: 20px;"></div>
+  <!-- ✅ Native Ad container -->
+  <div class="ad-container" id="container-29bfcad8afd4d517147d4c3e8edd2853"></div>
 
-  <!-- ✅ Video container -->
-  <div id="video-container" style="margin-top: 30px;"></div>
+  <div id="video-container"></div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
@@ -51,15 +58,20 @@
     const videoContainer = document.getElementById("video-container");
 
     if (!videoUrl) {
-      document.body.innerHTML = "❌ Missing video URL.";
+      videoContainer.innerHTML = "<p style='color:red;'>❌ Missing video URL.</p>";
     } else {
-      const videoEl = document.createElement("video");
-      videoEl.src = videoUrl;
-      videoEl.controls = true;
-      videoEl.autoplay = true;
-      videoEl.width = "90%";
-      videoContainer.appendChild(videoEl);
+      videoContainer.innerHTML = `
+        <a href="${videoUrl}" class="video-link" target="_blank">▶️ Click Here to Watch the Video</a>
+        <p style="margin-top:10px;font-size:0.9em;color:#666;">
+          If it doesn't play, long-press and open in your video app.
+        </p>
+      `;
     }
   </script>
 </body>
 </html>
+
+
+
+
+
